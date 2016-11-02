@@ -16,7 +16,7 @@ public class MainLIBActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 TestClass.testToast(MainLIBActivity.this, "Success");
+                 TestClass.testToast(MainLIBActivity.this, "Welcome LIB ");
                 //TestClass.testActivity(MainLIBActivity.this);
             }
         });
