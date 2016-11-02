@@ -11,6 +11,7 @@ public class TestClass {
 
     public static void testToast(Context context, String Msg) {
         Toast.makeText(context, Msg, Toast.LENGTH_SHORT).show();
+   
     }
 
     public static void testActivity(Context context) {
