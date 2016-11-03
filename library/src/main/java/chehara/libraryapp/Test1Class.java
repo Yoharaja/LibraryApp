@@ -7,7 +7,7 @@ import android.widget.Toast;
 /**
  * Created by answerz on 1/11/16.
  */
-public class TestClass {
+public class Test1Class {
 
     public static void testToast(Context context, String Msg) {
         Toast.makeText(context, Msg, Toast.LENGTH_SHORT).show();
