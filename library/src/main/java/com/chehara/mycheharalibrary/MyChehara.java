@@ -34,7 +34,7 @@ public class MyChehara {
                     permissionsNeeded.add(record);
 
 
-                if (permissionsNeeded.size() == 0) {
+                if (permissionsNeeded.size() != 0) {
                     throw new IllegalStateException("");
                 }
             }
