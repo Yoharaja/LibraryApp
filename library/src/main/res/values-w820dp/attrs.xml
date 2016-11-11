@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TypefaceButton">
+        <attr name="buttonTypeface" format="string" />
+    </declare-styleable>
+    <declare-styleable name="TypefaceEditText">
+        <attr name="editTextTypeface" format="string" />
+    </declare-styleable>
+    <declare-styleable name="TypefaceTextView">
+        <attr name="textViewTypeface" format="string" />
+    </declare-styleable>
+    <declare-styleable name="TypefaceRadioButton">
+        <attr name="radioButtonTypeface" format="string" />
+    </declare-styleable>
+    <declare-styleable name="TypefaceCheckBox">
+        <attr name="checkBoxTypeface" format="string" />
+    </declare-styleable>
+
+
+
+
+</resources>
