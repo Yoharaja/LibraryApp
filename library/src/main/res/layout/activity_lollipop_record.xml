@@ -1,0 +1,232 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical" >
+
+    <com.chehara.mycheharalibrary.widget.AutoFitTextureView
+        android:id="@+id/recordVideo"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_weight="1.20" />
+
+    <VideoView
+
+        android:id="@+id/videoview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_weight="1.20"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutProgress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/videoview"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:visibility="visible" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:orientation="horizontal" >
+
+            <ProgressBar
+                android:id="@+id/horizontalProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9" />
+
+            <com.chehara.mycheharalibrary.widget.TypefaceTextView
+                android:id="@+id/textViewProgressPercentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="Roboto-Light"
+                android:gravity="end"
+                android:text=" 0%"
+                android:textColor="@color/black"
+                android:visibility="gone" />
+
+            <com.chehara.mycheharalibrary.widget.TypefaceButton
+                android:id="@+id/buttonUploadRetry"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/button_state_selector_record_all"
+                android:fontFamily="Roboto-Light"
+                android:gravity="center"
+                android:text="REUPLOAD"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <com.chehara.mycheharalibrary.widget.TypefaceTextView
+            android:id="@+id/textViewProgressMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="Roboto-Light"
+            android:text="status Message"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <ProgressBar
+            android:id="@+id/normalProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.chehara.mycheharalibrary.widget.TypefaceTextView
+            android:id="@+id/textViewFinishText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="Roboto-Light"
+            android:paddingBottom="20dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="@string/after_upload_text"
+            android:textColor="@color/black"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutBottomControlsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black_trans_level1" >
+
+        <LinearLayout
+            android:id="@+id/layoutLeftControls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp" >
+
+            <ToggleButton
+                android:id="@+id/cameraBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:drawableLeft="@drawable/ic_video_camswitch"
+                android:fontFamily="Roboto-Light"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textOff=""
+                android:textOn=""
+                android:textSize="12sp" />
+
+            <ToggleButton
+                android:id="@+id/recordBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blank"
+                android:drawableLeft="@drawable/button_state_selector_record_toggle"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:fontFamily="Roboto-Light"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textOff=""
+                android:textOn=""
+                android:textSize="12sp" />
+
+            <com.chehara.mycheharalibrary.widget.TypefaceButton
+                android:id="@+id/buttonPreview"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/button_state_selector_record_all"
+                android:fontFamily="Roboto-Light"
+                android:gravity="center"
+                android:text="PREVIEW"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <com.chehara.mycheharalibrary.widget.TypefaceButton
+                android:id="@+id/buttonRetry"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/button_state_selector_record_all"
+                android:fontFamily="Roboto-Light"
+                android:gravity="center"
+                android:text="RETRY"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <com.chehara.mycheharalibrary.widget.TypefaceButton
+                android:id="@+id/buttonUpload"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/button_state_selector_record_all"
+                android:fontFamily="Roboto-Light"
+                android:gravity="center"
+                android:text="UPLOAD"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <com.chehara.mycheharalibrary.widget.TypefaceButton
+                android:id="@+id/backApp"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/button_state_selector_record_all"
+                android:fontFamily="Roboto-Light"
+                android:gravity="center"
+                android:text="BACK"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutTopControlsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/layoutRightControls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical|right"
+            android:orientation="vertical"
+            android:paddingRight="@dimen/control_box_padding"
+            android:paddingTop="@dimen/control_box_padding" >
+
+            <com.chehara.mycheharalibrary.widget.TypefaceTextView
+                android:id="@+id/timer"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="0.10"
+                android:background="@drawable/record_push_button_normal"
+                android:fontFamily="Roboto-Light"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Time"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

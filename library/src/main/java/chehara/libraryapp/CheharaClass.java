@@ -10,8 +10,7 @@ import android.util.Log;
 public class CheharaClass {
 
     public static  void callIntent(Context context){
-        Intent intent = new Intent(context, MainLIBActivity.class);
-        context.startActivity(intent);
+
     }
 
     public static void log(){
