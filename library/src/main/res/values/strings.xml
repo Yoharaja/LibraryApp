@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">LibraryApp</string>
+    <string name="app_name">MyChehara Library</string>
+
+
+    <string name="RETRY_UPLOAD">RETRY UPLOAD</string>
+
+    <string name="interview_after_upload_text">Thanks for your interest. Your Video interview has been sent for moderation. Once approved, your video interview details will be notified to you.</string>
+
+    <string name="after_upload_text">Thanks for your interest. Your Video resume has been sent for moderation. Once approved, your video resume details will be notified to you. </string>
+
+    <string name="txt_file_upload_warning">Please do not close the app or disconnect the internet until your video uploaded successfully</string>
+
+    <string name="app_not_work">The app may not function properly with denied permissions</string>
+
+    <string name="open_setting">You can add permissions later. Go to Settings -> App -> MyChehara -> Permissions </string>
+
+    <string name="app_finish">Permission is Denied App finish</string>
+
+
 </resources>

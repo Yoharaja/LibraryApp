@@ -3,4 +3,32 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="theme_primary">#ff6e40</color>
+    <color name="theme_primary_new">#ff6e40</color>
+    <color name="theme_primary_new_trans">#ff9e80</color>
+    <color name="theme_newprimary">#4183d7</color>
+    <color name="theme_secondary">#191919</color>
+    <color name="theme_secondary_trans_level1">#90191919</color>
+    <color name="theme_secondary_trans_level2">#70191919</color>
+    <color name="white_trans_level1">#50ffffff</color>
+    <color name="white_trans_level2">#20ffffff</color>
+    <color name="black">#000000</color>
+    <color name="black_trans_level1">#55000000</color>
+    <color name="theme_gray">#c5c5c5</color>
+    <color name="theme_primary_trans">#50f9690e</color>
+    <color name="none">#00000000</color>
+    <color name="theme_gray_level1">#999999</color>
+    <color name="theme_gray_level2">#555555</color>
+    <color name="theme_gray_level3">#e8e8e8</color>
+    <color name="theme_gray_level4">#dddddd</color>
+    <color name="theme_gray_level5">#eeeeee</color>
+    <color name="theme_blue">#40a2da</color>
+    <color name="theme_new_blue">#40a2da</color>
+    <color name="theme_blue_trans">#2222a7f0</color>
+    <color name="white">#FFFFFF</color>
+    <color name="dwhite">#eae4de</color>
+    <color name="red">#ff0000</color>
+
+    <color name="record_disabled">#e3e3e3</color>
 </resources>

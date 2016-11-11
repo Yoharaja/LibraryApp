@@ -16,8 +16,7 @@ public class Test1Class {
 
     public static void testActivity(Context context) {
 
-        Intent intent = new Intent(context, MainLIBActivity.class);
-        context.startActivity(intent);
+
 
     }
 }
