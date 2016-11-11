@@ -76,7 +76,7 @@ public class RecordActivity extends Activity {
     String dir = CheharaConst.SDCARD + CheharaConst.CHEHARA_DIR;
     String fileName = CheharaConst.FILE_NAME;
     String sourceFileUri = dir + File.separator + fileName;
-    String email="";
+    public static  String email;
     ProgressBar horizontalProgressBar, progressBar;
     TextView txtPercentage, txtProgressMsg;
 
@@ -200,7 +200,7 @@ public class RecordActivity extends Activity {
             }
 
             if (intent.hasExtra("EMAIL")) {
-                email = intent.getStringExtra("EMAIL");
+            //    email = intent.getStringExtra("EMAIL");
             }
             txtFileUploadWarning = CheharaUtils.getFileUploadWarningText(this);
             txtFileUploadFinish = CheharaUtils.getFileUploadFinishText(this);

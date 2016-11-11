@@ -21,32 +21,47 @@ public class MyChehara {
 
     public static void recordVideo(String Email, Context context) {
         List<String> permissionsNeeded = new ArrayList<String>();
-        String  camera = Manifest.permission.CAMERA,  record = Manifest.permission.RECORD_AUDIO;
+        String camera = Manifest.permission.CAMERA, record = Manifest.permission.RECORD_AUDIO;
         Intent intent;
 
-        if (!CheharaUtils.checkPermission(camera, context))
-            permissionsNeeded.add(camera);
+        try {
+            if (CheharaConst.DEVICE_API_INT >= CheharaConst.ANROID_API_MARSHMALLOW) {
 
-        if (!CheharaUtils.checkPermission(record, context))
-            permissionsNeeded.add(record);
+                if (!CheharaUtils.checkPermission(camera, context))
+                    permissionsNeeded.add(camera);
+
+                if (!CheharaUtils.checkPermission(record, context))
+                    permissionsNeeded.add(record);
 
 
-        if (permissionsNeeded.size() == 0) {
+                if (permissionsNeeded.size() == 0) {
+                    throw new IllegalStateException("");
+                }
+            }
+
             if (CheharaConst.DEVICE_API_INT >= CheharaConst.ANROID_API_LOILLIPOP) {
+                LollipopRecordActivity.email = Email;
                 intent = new Intent(context,
                         LollipopRecordActivity.class);
                 Log.e("TAG", "lollipoprecord activity loaded");
             } else {
+                RecordActivity.email = Email;
                 intent = new Intent(context, RecordActivity.class);
                 Log.e("TAG", "normalrecord activity loaded");
             }
             intent.putExtra(RecordActivity.UPLOADABLE, true);
             intent.putExtra("EMAIL", Email);
             context.startActivity(intent);
-        } else {
-            CustomDialog.buildAlertDialogTitle(context, "Add Permission in Application", "").show();
-            // Toast.makeText(context,"Add Permission in Application",To)
-        }
 
+
+            // Toast.makeText(context,"Add Permission in Application",To)
+
+        } catch (IllegalStateException e) {
+            CustomDialog.buildAlertDialogTitle(context, "Add Permission in Application", "").show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+
 }

@@ -90,7 +90,7 @@ public class LollipopRecordActivity extends Activity {
     String fileName = CheharaConst.FILE_NAME;
     // String fileName = "VideoResume.3gp";
     String sourceFileUri = dir + File.separator + fileName;
-    String email = "";
+    public static String email;
     ProgressBar horizontalProgressBar, progressBar;
     TextView txtPercentage, txtProgressMsg, timer, txtFinish;
     LinearLayout activityLayout, layoutUpload;
@@ -263,7 +263,7 @@ public class LollipopRecordActivity extends Activity {
                 uploadable = intent.getBooleanExtra(UPLOADABLE, uploadable);
             }
             if (intent.hasExtra("EMAIL")) {
-                email = intent.getStringExtra("EMAIL");
+              //  email = intent.getStringExtra("EMAIL");
             }
 
             // if (intent.hasExtra(HomeNavActivity.FRAGMENT_INDEX)) {
@@ -393,11 +393,11 @@ public class LollipopRecordActivity extends Activity {
                     if (mIsRecordingVideo)
                         stopRecordingVideo();
 
-                 //   Intent homeIntent = new Intent(LollipopRecordActivity.this,
-                        //    HomeNavActivity.class);
-                //    homeIntent.putExtra(HomeNavActivity.FRAGMENT_INDEX,
-                      //      fragmentIndex);
-                  //  startActivity(homeIntent);
+                    //   Intent homeIntent = new Intent(LollipopRecordActivity.this,
+                    //    HomeNavActivity.class);
+                    //    homeIntent.putExtra(HomeNavActivity.FRAGMENT_INDEX,
+                    //      fragmentIndex);
+                    //  startActivity(homeIntent);
                     finish();
                 }
             });
