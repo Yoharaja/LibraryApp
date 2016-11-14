@@ -32,6 +32,11 @@ public class UploadVideoDaemon extends AsyncTask<Void, String, String> {
     //String endpoint_picture = CheharaConst.ENDPOINT_UPLOAD_TESTPROFILE_PICTURE;
     Context context;
     String message;
+
+    public String getSourceFileUri() {
+        return sourceFileUri;
+    }
+
     String sourceFileUri, fileName;
     int statuscode;
 
@@ -244,7 +249,7 @@ public class UploadVideoDaemon extends AsyncTask<Void, String, String> {
                     CheharaUtils.showMessageOKCancel(context, message, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            new UploadVideoDaemon(context).start();;
+                            uploadError();
                         }
 
                     }, new DialogInterface.OnClickListener() {
@@ -261,6 +266,15 @@ public class UploadVideoDaemon extends AsyncTask<Void, String, String> {
 
     public void start() {
         this.execute();
+    }
+
+    public void uploadError() {
+        UploadVideoDaemon uploadDaemon = new UploadVideoDaemon(
+                context);
+        uploadDaemon.setFileName("VideoResume.mp4");
+        uploadDaemon.setSourceFileUri(getSourceFileUri());
+        uploadDaemon.setEmail(getEmail());
+        uploadDaemon.start();
     }
 
 }
