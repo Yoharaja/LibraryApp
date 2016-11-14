@@ -755,7 +755,7 @@ public class RecordActivity extends Activity {
                     message, "MyChehara Alert").show();
             progressBar.setVisibility(View.GONE);
 
-            if (message.indexOf("Completed") != -1) {
+            if (message.indexOf("completed") != -1) {
                 Log.e("Test", "back onClick() invoked");
 
                 btnPreview.setEnabled(false);

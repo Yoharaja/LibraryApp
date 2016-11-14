@@ -1,5 +1,6 @@
 package com.chehara.mycheharalibrary;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.util.Log;
 
 import com.chehara.mycheharalibrary.daemon.UploadVideoDaemon;
 import com.chehara.mycheharalibrary.utils.CheharaConst;
+import com.chehara.mycheharalibrary.utils.CheharaUtils;
 import com.chehara.mycheharalibrary.utils.ImageFilePath;
 import com.chehara.mycheharalibrary.widget.CustomDialog;
 
@@ -24,19 +26,17 @@ public class UploadActivity extends AppCompatActivity {
     Uri uri;
     public static String Email;
     String path = CheharaConst.SDCARD + CheharaConst.CHEHARA_DIR;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upload);
+        try {
+            setContentView(R.layout.activity_upload);
+            requestVideo();
 
-        Intent intent = new Intent();
-        //  isGalleryImage = true;
-        intent.setType("video/*");
-        intent.setAction(Intent.ACTION_PICK);
-
-        startActivityForResult(
-                Intent.createChooser(intent, "Select Video"),
-                PICK_VIDEO_REQUEST);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -75,7 +75,19 @@ public class UploadActivity extends AppCompatActivity {
 //							.show();
 
                     String txt = "Video Resume only mp4 format";
-                    CustomDialog.buildAlertDialogTitle(UploadActivity.this, txt, "MyChehara Alert").show();
+                    // CustomDialog.buildAlertDialogTitle(UploadActivity.this, txt, "MyChehara Alert").show();
+                    CheharaUtils.showMessageOKCancel(UploadActivity.this, txt, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            requestVideo();
+                        }
+
+                    }, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    },"Retry");
                 } else {
                     if (MAX_SIZE > length) {
 
@@ -94,8 +106,19 @@ public class UploadActivity extends AppCompatActivity {
 //								Toast.LENGTH_LONG).show();
 
                         String txt = "File size should not exceed 25 mb";
-                        CustomDialog.buildAlertDialogTitle(UploadActivity.this, txt, "MyChehara Alert").show();
+                        // CustomDialog.buildAlertDialogTitle(UploadActivity.this, txt, "MyChehara Alert").show();
+                        CheharaUtils.showMessageOKCancel(UploadActivity.this, txt, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                requestVideo();
+                            }
 
+                        }, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        },"Retry");
                     }
                 }
             } catch (Exception e) {
@@ -123,5 +146,16 @@ public class UploadActivity extends AppCompatActivity {
             destination.close();
         }
 
+    }
+
+    public void requestVideo() {
+        Intent intent = new Intent();
+        //  isGalleryImage = true;
+        intent.setType("video/*");
+        intent.setAction(Intent.ACTION_PICK);
+
+        startActivityForResult(
+                Intent.createChooser(intent, "Select Video"),
+                PICK_VIDEO_REQUEST);
     }
 }

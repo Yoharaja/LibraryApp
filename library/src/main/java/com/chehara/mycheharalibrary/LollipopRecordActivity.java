@@ -1108,7 +1108,8 @@ public class LollipopRecordActivity extends Activity {
                 uploaded = true;
                 btnRetryUpload.setEnabled(false);
                 btnRetryUpload.setVisibility(View.GONE);
-                // exitActivity();
+                //exitActivity();
+
             } else {
                 btnRetryUpload.setEnabled(true);
                 btnRetryUpload.setVisibility(View.VISIBLE);

@@ -136,11 +136,11 @@ public class CheharaUtils {
         }
     }
 
-    public static void showMessageOKCancel(Context context, String message, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener) {
+    public static void showMessageOKCancel(Context context, String message, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener,String postiveButton) {
 
         new AlertDialog.Builder(context)
                 .setMessage(message)
-                .setPositiveButton("OK", okListener)
+                .setPositiveButton(postiveButton, okListener)
                 .setNegativeButton("Cancel", cancelListener)
                 .create()
                 .show();
