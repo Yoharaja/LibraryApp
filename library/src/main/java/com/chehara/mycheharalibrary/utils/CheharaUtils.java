@@ -144,6 +144,7 @@ public class CheharaUtils {
                 .setNegativeButton("Cancel", cancelListener)
                 .create()
                 .show();
+        
     }
 
     public static void showSetting(Context context, String message, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener) {
