@@ -103,7 +103,8 @@ public class UploadActivity extends AppCompatActivity {
                         uploadDaemon.start();
                     } else {
 //						Toast.makeText(getActivity(), "size not greater 10 mb",
-//								Toast.LENGTH_LONG).show();
+//
+// 		Toast.LENGTH_LONG).show();
 
                         String txt = "File size should not exceed 25 mb";
                         // CustomDialog.buildAlertDialogTitle(UploadActivity.this, txt, "MyChehara Alert").show();

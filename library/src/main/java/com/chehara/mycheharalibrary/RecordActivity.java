@@ -773,6 +773,7 @@ public class RecordActivity extends Activity {
                 btnRetryUpload.setVisibility(View.VISIBLE);
                 txtFinish.setVisibility(View.GONE);
             }
+
             backapp.setEnabled(true);
         }
 
