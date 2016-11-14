@@ -244,7 +244,7 @@ public class UploadVideoDaemon extends AsyncTask<Void, String, String> {
                     CheharaUtils.showMessageOKCancel(context, message, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            execute();
+                            new UploadVideoDaemon(context).start();;
                         }
 
                     }, new DialogInterface.OnClickListener() {
