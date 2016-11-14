@@ -12,6 +12,7 @@ import java.net.URL;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import com.chehara.mycheharalibrary.fileupload.CountingOutputStream;
 import com.chehara.mycheharalibrary.fileupload.ProgressListener;
 import com.chehara.mycheharalibrary.utils.CheharaConst;
+import com.chehara.mycheharalibrary.utils.CheharaUtils;
 import com.chehara.mycheharalibrary.widget.CustomDialog;
 
 public class UploadVideoDaemon extends AsyncTask<Void, String, String> {
@@ -233,11 +235,24 @@ public class UploadVideoDaemon extends AsyncTask<Void, String, String> {
             @Override
             public void run() {
                 //Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-                CustomDialog.buildAlertDialogTitle(context,
-                        message, "MyChehara Alert").show();
+                //  CustomDialog.buildAlertDialogTitle(context,
+                //   message, "MyChehara Alert").show();
 
-                if (message.indexOf("upload") != -1) {
+                if (message.indexOf("completed") != -1) {
                     ((Activity) context).finish();
+                } else {
+                    CheharaUtils.showMessageOKCancel(context, message, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            execute();
+                        }
+
+                    }, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ((Activity) context).finish();
+                        }
+                    }, "Retry");
                 }
             }
         });

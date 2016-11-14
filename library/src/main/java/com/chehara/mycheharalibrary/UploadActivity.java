@@ -87,7 +87,7 @@ public class UploadActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
                             finish();
                         }
-                    },"Retry");
+                    }, "Retry");
                 } else {
                     if (MAX_SIZE > length) {
 
@@ -119,12 +119,14 @@ public class UploadActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 finish();
                             }
-                        },"Retry");
+                        }, "Retry");
                     }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        } else if (resultCode == RESULT_CANCELED) {
+            finish();
         }
     }
 
