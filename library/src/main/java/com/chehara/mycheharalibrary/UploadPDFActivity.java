@@ -125,6 +125,8 @@ public class UploadPDFActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        } else if (resultCode == RESULT_CANCELED) {
+            finish();
         }
 
     }
