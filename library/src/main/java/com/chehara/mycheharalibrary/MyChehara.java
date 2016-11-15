@@ -21,7 +21,7 @@ public class MyChehara {
 
     public static void recordVideo(String Email, Context context) {
         List<String> permissionsNeeded = new ArrayList<String>();
-        String camera = Manifest.permission.CAMERA, record = Manifest.permission.RECORD_AUDIO;
+        String camera = Manifest.permission.CAMERA, record = Manifest.permission.RECORD_AUDIO, read = Manifest.permission.READ_EXTERNAL_STORAGE, write = Manifest.permission.WRITE_EXTERNAL_STORAGE;
         Intent intent;
 
         try {
@@ -33,6 +33,11 @@ public class MyChehara {
                 if (!CheharaUtils.checkPermission(record, context))
                     permissionsNeeded.add(record);
 
+                if (!CheharaUtils.checkPermission(read, context))
+                    permissionsNeeded.add(read);
+
+                if (!CheharaUtils.checkPermission(write, context))
+                    permissionsNeeded.add(write);
 
                 if (permissionsNeeded.size() != 0) {
                     throw new IllegalStateException("");
