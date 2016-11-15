@@ -100,5 +100,41 @@ public class MyChehara {
         }
     }
 
+    public static void uploadPDF(String Email, Context context) {
+        List<String> permissionsNeeded = new ArrayList<String>();
+        String read = Manifest.permission.READ_EXTERNAL_STORAGE, write = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+        Intent intent;
+
+        try {
+            if (CheharaConst.DEVICE_API_INT >= CheharaConst.ANROID_API_MARSHMALLOW) {
+
+                if (!CheharaUtils.checkPermission(read, context))
+                    permissionsNeeded.add(read);
+
+                if (!CheharaUtils.checkPermission(write, context))
+                    permissionsNeeded.add(write);
+
+
+                if (permissionsNeeded.size() != 0) {
+                    throw new IllegalStateException("");
+                }
+            }
+
+            intent = new Intent(context,
+                    UploadPDFActivity.class);
+            intent.putExtra("EMAIL", Email);
+            UploadPDFActivity.Email = Email;
+            context.startActivity(intent);
+
+
+            // Toast.makeText(context,"Add Permission in Application",To)
+
+        } catch (IllegalStateException e) {
+            CustomDialog.buildAlertDialogTitle(context, "Add Permission in Application", "").show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

@@ -1,11 +1,14 @@
 package com.chehara.mycheharalibrary.utils;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.nio.channels.FileChannel;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -126,7 +129,6 @@ public class CheharaUtils {
     }
 
 
-
     public static boolean checkPermission(String permission, Context context) {
         int result = ContextCompat.checkSelfPermission(context, permission);
         if (result == PackageManager.PERMISSION_GRANTED) {
@@ -136,7 +138,7 @@ public class CheharaUtils {
         }
     }
 
-    public static void showMessageOKCancel(Context context, String message, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener,String postiveButton) {
+    public static void showMessageOKCancel(Context context, String message, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener, String postiveButton) {
 
         new AlertDialog.Builder(context)
                 .setMessage(message)
@@ -170,5 +172,28 @@ public class CheharaUtils {
         i.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
         context.startActivity(i);
     }
+
+
+    public static void copyFile(File sourceFile, File destFile) throws IOException {
+        if (!sourceFile.exists()) {
+            return;
+        }
+
+        FileChannel source = null;
+        FileChannel destination = null;
+        source = new FileInputStream(sourceFile).getChannel();
+        destination = new FileOutputStream(destFile).getChannel();
+        if (destination != null && source != null) {
+            destination.transferFrom(source, 0, source.size());
+        }
+        if (source != null) {
+            source.close();
+        }
+        if (destination != null) {
+            destination.close();
+        }
+
+    }
+
 
 }

@@ -3,56 +3,58 @@ package com.chehara.mycheharalibrary;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 
-import com.chehara.mycheharalibrary.daemon.UploadVideoDaemon;
+import com.chehara.mycheharalibrary.daemon.UploadPDFDaemon;
 import com.chehara.mycheharalibrary.utils.CheharaConst;
 import com.chehara.mycheharalibrary.utils.CheharaUtils;
-import com.chehara.mycheharalibrary.utils.ImageFilePath;
-import com.chehara.mycheharalibrary.widget.CustomDialog;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.channels.FileChannel;
+import java.net.URI;
 
-public class UploadActivity extends AppCompatActivity {
+public class UploadPDFActivity extends AppCompatActivity {
 
-    int MAX_SIZE = 25 * 1024;
-    private int PICK_VIDEO_REQUEST = 1;
+    private int PICK_PDF_REQUEST = 4;
     Uri uri;
+    int MAX_SIZE = 1 * 1024;
     public static String Email;
     String path = CheharaConst.SDCARD + CheharaConst.CHEHARA_DIR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try {
-            setContentView(R.layout.activity_upload);
-            requestVideo();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        setContentView(R.layout.activity_upload_pdf);
+        requestPDF();
     }
 
+    private void requestPDF() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("file/*");
+        startActivityForResult(
+                Intent.createChooser(intent, "Select PDF"),
+                PICK_PDF_REQUEST);
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == PICK_VIDEO_REQUEST
+        if (requestCode == PICK_PDF_REQUEST
                 && resultCode == RESULT_OK && data != null
                 && data.getData() != null) {
-            uri = data.getData();
 
             try {
 
-                String videoPath = new ImageFilePath().getPath(UploadActivity.this,
-                        uri);
+                uri = data.getData();
+
+                String videoPath = uri.getPath();
+
                 Log.e("TAG", videoPath);
 
                 File f = new File(videoPath);
@@ -68,18 +70,15 @@ public class UploadActivity extends AppCompatActivity {
 
                 Log.e("TAG", substring);
 
-                if ((!substring.equalsIgnoreCase(".mp4"))) {
+                if ((!substring.equalsIgnoreCase(".pdf"))) {
 
-//					Toast.makeText(getActivity(),
-//							"Resume Video only mp4 format", Toast.LENGTH_LONG)
-//							.show();
-
-                    String txt = "Video Resume only mp4 format";
-                    // CustomDialog.buildAlertDialogTitle(UploadActivity.this, txt, "MyChehara Alert").show();
-                    CheharaUtils.showMessageOKCancel(UploadActivity.this, txt, new DialogInterface.OnClickListener() {
+//					Toast.makeText(getActivity(), "Upload PDF only",
+//							Toast.LENGTH_LONG).show();
+                    String txt = "Upload PDF Files only";
+                    CheharaUtils.showMessageOKCancel(UploadPDFActivity.this, txt, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            requestVideo();
+                            requestPDF();
                         }
 
                     }, new DialogInterface.OnClickListener() {
@@ -88,30 +87,29 @@ public class UploadActivity extends AppCompatActivity {
                             finish();
                         }
                     }, "Retry");
+
                 } else {
                     if (MAX_SIZE > length) {
 
                         CheharaUtils.copyFile(f, new File(path + File.separator
-                                + "VideoResume.mp4"));
+                                + "Resume.pdf"));
 
-                        UploadVideoDaemon uploadDaemon = new UploadVideoDaemon(
-                                UploadActivity.this);
-                        uploadDaemon.setFileName("VideoResume.mp4");
+                        UploadPDFDaemon uploadDaemon = new UploadPDFDaemon(
+                                UploadPDFActivity.this);
+                        uploadDaemon.setFileName("Resume.pdf");
                         uploadDaemon.setSourceFileUri(path + File.separator
-                                + "VideoResume.mp4");
+                                + "Resume.pdf");
                         uploadDaemon.setEmail(Email);
                         uploadDaemon.start();
                     } else {
-//						Toast.makeText(getActivity(), "size not greater 10 mb",
-//
-// 		Toast.LENGTH_LONG).show();
+//						Toast.makeText(getActivity(), "size not greater 1 mb",
+//								Toast.LENGTH_LONG).show();
 
-                        String txt = "File size should not exceed 25 mb";
-                        // CustomDialog.buildAlertDialogTitle(UploadActivity.this, txt, "MyChehara Alert").show();
-                        CheharaUtils.showMessageOKCancel(UploadActivity.this, txt, new DialogInterface.OnClickListener() {
+                        String txt = "File size should not exceed 1 mb";
+                        CheharaUtils.showMessageOKCancel(UploadPDFActivity.this, txt, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                requestVideo();
+                                requestPDF();
                             }
 
                         }, new DialogInterface.OnClickListener() {
@@ -120,26 +118,15 @@ public class UploadActivity extends AppCompatActivity {
                                 finish();
                             }
                         }, "Retry");
+
                     }
                 }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else if (resultCode == RESULT_CANCELED) {
-            finish();
         }
+
     }
 
-
-
-    public void requestVideo() {
-        Intent intent = new Intent();
-        //  isGalleryImage = true;
-        intent.setType("video/*");
-        intent.setAction(Intent.ACTION_PICK);
-
-        startActivityForResult(
-                Intent.createChooser(intent, "Select Video"),
-                PICK_VIDEO_REQUEST);
-    }
 }

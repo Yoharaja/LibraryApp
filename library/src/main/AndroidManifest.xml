@@ -21,7 +21,11 @@
         android:theme="@style/AppTheme">
         <activity android:name=".LollipopRecordActivity" />
         <activity android:name=".RecordActivity" />
-        <activity android:name=".UploadActivity"></activity>
+        <activity android:name=".UploadActivity" />
+        <activity
+            android:name=".UploadPDFActivity"
+            android:label="@string/title_activity_upload_pdf"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
